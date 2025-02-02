@@ -18,10 +18,10 @@ export function App() {
   useEffect(() => {
     window.addEventListener("message", (event) => {
       // Validate the origin
-      if (event.origin !== "http://localhost:4000") {
-        console.warn("Origin not allowed:", event.origin);
-        return;
-      }
+      // if (event.origin !== "http://localhost:4000") {
+      //   console.warn("Origin not allowed:", event.origin);
+      //   return;
+      // }
 
       // Access nested properties
       if (event.data.type === "DATA") {
