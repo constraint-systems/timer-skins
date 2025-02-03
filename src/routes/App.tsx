@@ -5,6 +5,7 @@ import { Circle } from "./Circle";
 import { Arc } from "./Arc";
 import { Api } from "./Api";
 import { DataType } from "../types";
+import Freehand from "./Freehand";
 
 export function App() {
   const params = useParams();
@@ -46,5 +47,7 @@ export function App() {
     return <Arc data={data} />;
   } else if (params.visual === "example-api") {
     return <Api data={data} />;
+  } else if (params.visual === "freehand") {
+    return <Freehand data={data} />;
   }
 }

@@ -76,3 +76,77 @@ export function secondsToReadableDurationLong(seconds: number): string {
 
   return durationString.trim();
 }
+
+// Turn the points returned from perfect-freehand into SVG path data.
+export function getSvgPathFromStroke(stroke: [number, number][]): string {
+  if (!stroke.length) return "";
+
+  const d = stroke.reduce<string[]>(
+    (acc, [x0, y0], i, arr) => {
+      const [x1, y1] = arr[(i + 1) % arr.length];
+      acc.push(
+        x0.toString(),
+        y0.toString(),
+        ((x0 + x1) / 2).toString(),
+        ((y0 + y1) / 2).toString(),
+      );
+      return acc;
+    },
+    ["M", ...stroke[0].map(String), "Q"],
+  );
+
+  return d.join(" ");
+}
+
+export type SvgPathType = "linear" | "quadratic" | "cubic";
+
+/**
+ * Convert a set of points into SVG path data.
+ * @param points - Array of [x, y] coordinate tuples.
+ * @param type - Type of path to generate ("linear", "quadratic", or "cubic").
+ * @returns SVG path string.
+ */
+export function getSvgPathFromPoints(
+  points: [number, number][],
+  type: SvgPathType = "linear",
+): string {
+  if (points.length === 0) return "";
+
+  const d: string[] = ["M", points[0][0].toString(), points[0][1].toString()];
+
+  if (type === "linear") {
+    for (let i = 1; i < points.length; i++) {
+      d.push("L", points[i][0].toString(), points[i][1].toString());
+    }
+  } else if (type === "quadratic" && points.length > 1) {
+    d.push("Q");
+    for (let i = 0; i < points.length - 1; i++) {
+      const [x0, y0] = points[i];
+      const [x1, y1] = points[i + 1];
+      d.push(
+        ((x0 + x1) / 2).toString(),
+        ((y0 + y1) / 2).toString(),
+        x1.toString(),
+        y1.toString(),
+      );
+    }
+  } else if (type === "cubic" && points.length > 2) {
+    d.push("C");
+    for (let i = 1; i < points.length - 1; i++) {
+      const [x0, y0] = points[i - 1];
+      const [x1, y1] = points[i];
+      const [x2, y2] = points[i + 1];
+      d.push(
+        ((x0 + x1) / 2).toString(),
+        ((y0 + y1) / 2).toString(),
+        ((x1 + x2) / 2).toString(),
+        ((y1 + y2) / 2).toString(),
+        x2.toString(),
+        y2.toString(),
+      );
+    }
+  }
+
+  // d.push("Z");
+  return d.join(" ");
+}
