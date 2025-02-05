@@ -6,6 +6,8 @@ import { Arc } from "./Arc";
 import { Api } from "./Api";
 import { DataType } from "../types";
 import Freehand from "./Freehand";
+import Dev from "./Dev";
+import Evangelion from "./Evangelion";
 
 export function App() {
   const params = useParams();
@@ -49,5 +51,9 @@ export function App() {
     return <Api data={data} />;
   } else if (params.visual === "freehand") {
     return <Freehand data={data} />;
+  } else if (params.visual === "evangelion") {
+    return <Evangelion data={data} />;
+  } else if (params.visual === "dev") {
+    return <Dev data={data} />;
   }
 }

@@ -58,6 +58,21 @@ export function secondsToReadableDuration(seconds: number): string {
   return durationString.trim();
 }
 
+export function secondsToColonDuration(seconds: number): string {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  let durationString = "";
+  if (hours > 0) {
+    durationString += `${hours}:`;
+  }
+  durationString += `${minutes.toString().padStart(2, "0")}:`;
+  durationString += remainingSeconds.toString().padStart(2, "0");
+
+  return durationString;
+}
+
 export function secondsToReadableDurationLong(seconds: number): string {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
