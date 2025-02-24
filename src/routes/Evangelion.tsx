@@ -386,18 +386,18 @@ function Evangelion({ data }: { data: DataType }) {
           className="absolute left-1/2 h-1/2 -translate-x-1/2 -translate-y-1/2 px-3 items-baseline text-right"
           style={{
             fontFamily: "Digital7",
-            fontSize: "140px",
+            fontSize: "104px",
             color: "#eca000",
-            marginTop: -130,
-            marginLeft: 16,
+            marginTop: -100,
+            marginLeft: 13,
             textShadow: "0 0 8px #eca000",
           }}
         >
           <div
             className="absolute bg-black text-left top-0 left-0 text-xs uppercase"
             style={{
-              top: 11,
-              left: -16,
+              top: -19,
+              left: -14,
               paddingTop: 3,
               paddingRight: 6,
               fontSize: "13px",
@@ -429,6 +429,7 @@ function Evangelion({ data }: { data: DataType }) {
             style={{
               top: 2,
               right: -4,
+              fontFamily: "Segment7Standard",
             }}
           >
             {timeSplit[0]}
@@ -451,7 +452,7 @@ function Evangelion({ data }: { data: DataType }) {
             </svg>
             <div
               style={{
-                fontSize: "100px",
+                fontSize: "90px",
               }}
               ref={millisecondRef}
             ></div>

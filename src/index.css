@@ -22,12 +22,13 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Digital7";
-  src: url("./assets/fonts/Digital7_mono.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+/* @font-face { */
+/*   font-family: "Digital7"; */
+/*   src: url("./assets/fonts/Digital7_mono.woff2") format("woff2"); */
+/*   src: url("./assets/fonts/Digital7_mono.woff") format("woff"); */
+/*   font-weight: normal; */
+/*   font-style: normal; */
+/* } */
 
 body {
   font-family: sans-serif;
